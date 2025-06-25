@@ -1,0 +1,67 @@
+# Timer Capture Mode with PIC16F877A (CCP1)
+
+This project demonstrates how to use the **Capture mode** of the **CCP1 module** on the PIC16F877A microcontroller to detect edges of an external signal and capture the timer value.
+
+## 👨‍💻 Author
+**Edvin Jose Vakaparamban**  
+📅 Created on: [Your Date]
+
+---
+
+## ⚙️ Description
+
+- The program sets up **Timer1** as a free-running counter.
+- The **CCP1 module** (on RC2) is configured to **Capture** mode on rising edges.
+- When a rising edge is detected, the current value of Timer1 is stored in **CCPR1**.
+- An **interrupt** is triggered on capture, and **PORTB** is set high.
+
+This is useful for:
+- Measuring frequency or pulse width
+- Detecting signal transitions
+- Timing external events
+
+---
+
+## 🧰 Hardware Requirements
+
+- **PIC16F877A** Microcontroller
+- External signal source to RC2 (capture pin)
+- LED or scope connected to PORTB (optional)
+- 16 MHz crystal oscillator
+- Basic circuit setup on breadboard or PCB
+
+---
+
+## ⚡ Pin Configuration
+
+| Signal        | PIC Pin  |
+|---------------|----------|
+| Capture Input | RC2/CCP1 |
+| Output Port   | PORTB    |
+
+---
+
+## 📝 How it Works
+
+1. Timer1 counts continuously.
+2. When a rising edge is detected on **RC2**, the value of Timer1 is saved to CCPR1.
+3. An interrupt is generated.
+4. In the ISR, **PORTB** is set to `0xFF` (all pins high) to indicate capture.
+
+---
+
+## 🧪 Example Use Cases
+
+- Pulse width measurement
+- RPM measurement (by timing signal periods)
+- Input signal analysis
+
+---
+
+## ⏱️ Configuration Settings
+
+- **Capture Mode**: CCP1 set to capture every rising edge
+- **Timer1**: External clock source, no prescaler
+- **Interrupts**: Global, Peripheral, and CCP1 enabled
+
+
